@@ -9,6 +9,18 @@ class Course(models.Model):
         return self.name
 
 
+class Lesson(models.Model):
+    course = models.ForeignKey(
+        Course,
+        on_delete=models.CASCADE
+    )
+    title = models.CharField(max_length=200)
+    content = models.TextField()
+
+    def __str__(self):
+        return self.title
+
+
 class Question(models.Model):
     question_text = models.CharField(max_length=200)
     course = models.ForeignKey(
